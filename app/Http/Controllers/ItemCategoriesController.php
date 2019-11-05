@@ -26,7 +26,7 @@ class ItemCategoriesController extends Controller
 
         $data['data'] = $categories;
         $data['encrypted_ids'] = $encrypted_ids;
-
+    
         return $data;
         
     }
@@ -51,7 +51,7 @@ class ItemCategoriesController extends Controller
     {
         $category = new ItemCat();
         $category->itemCategory = ucwords($request->itemCategory);
-        $category->itemCatCode = $request->itemCatCode;
+        $category->itemCatCode = strtoupper($request->itemCatCode);
         $category->categoryDesc = ucfirst($request->categoryDesc);
         $category->status = $request->status;
 

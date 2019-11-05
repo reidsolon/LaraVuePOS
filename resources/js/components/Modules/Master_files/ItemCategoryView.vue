@@ -12,7 +12,7 @@
                             </div>
 
                             <div class="col-md-6 col-lg-6">
-                                <div class="row justify-content-end">
+                                <div class="row justify-content-end" v-if="category_info[0].status == 1">
                                     <button class="btn btn-warning" @click="editLink">Edit</button>   
                                     &nbsp;
                                     <button class="btn btn-danger">Delete</button>
@@ -55,9 +55,13 @@
                                     </div>  
                                 </div>
                                 <br />
-                                
+                               
                             </div>
                         </div>
+
+                    </div>
+                    <div id="category_footer">
+                        Date Created: {{ category_info[0].created_at | moment('D, MMM YYYY') }} <br>
                     </div>
                 </div>
                 
@@ -98,6 +102,10 @@ export default {
 #category_header{
     padding: 15px;
     border-bottom: 0.5px solid #f0f0f0;
+}
+
+#category_footer{
+    padding: 15px;
 }
 
 #category_body {

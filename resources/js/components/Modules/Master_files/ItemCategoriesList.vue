@@ -15,22 +15,31 @@
                     <div class="row">
                         <div class="col-md-6 col-lg-6">
                             <p>Category Code <span class="red">*</span></p>
-                            <input type="text" v-model="itemCategory.itemCatCode" placeholder="" class="form-control" id="itemCatCode" name="itemCatCode">
+                            <input type="text" v-model="itemCategory.itemCatCode" @keyup="validateInputs" placeholder="" class="form-control" id="itemCatCode" name="itemCatCode">
                         </div>
                         <div class="col-md-6 col-lg-6">
                             <p>Category <span class="red">*</span></p>
-                            <input type="text" v-model="itemCategory.itemCategory" placeholder="" class="form-control" id="itemCategory" name="itemCategory">
+                            <input type="text" v-model="itemCategory.itemCategory" @keyup="validateInputs" placeholder="" class="form-control" id="itemCategory" name="itemCategory">
                         </div>
                     </div>
 
                     <br />
 
                     <p>Description <span class="red">*</span></p>
-                    <textarea v-model="itemCategory.categoryDesc" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea v-model="itemCategory.categoryDesc" class="form-control" @keyup="validateInputs" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
+                <div class="loadingBar"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="add-category-btn" @click="createData" @keydown.enter="createData">Save Category</button>
+
+                    <span v-if="isValidated == true">
+                        <button type="button" class="btn btn-primary" id="add-category-btn" @click="createData" @keydown.enter="createData">Save Category</button>
+                    </span>
+
+                    <span v-else>
+                        <button disabled type="button" class="btn btn-primary" id="add-category-btn" @click="createData" @keydown.enter="createData">Save Category</button>
+                    </span>
+                    
                 </div>
                 </div>
             </div>
@@ -67,6 +76,9 @@
                 <tbody v-for="itemCategory in itemCategories" :key="itemCategory.id">
                     <category-table-item v-bind:tableRowInfo="itemCategory"></category-table-item>
                 </tbody>
+                <tfoot>
+                    
+                </tfoot>
                 </table>
             </div>
         </div>
@@ -80,6 +92,7 @@ export default {
     
     data () {
         return {
+            isValidated: false,
             itemCategoriesIds: [],
             itemCategories: [],
             itemCategory: {
@@ -99,6 +112,7 @@ export default {
                 for(var i = 0; i<this.itemCategories.length ; i++ ){
                     this.itemCategories[i].id = this.itemCategoriesIds[i];
                 }
+                console.log(res);
             })
             .catch((err) => {
                 console.log(err);
@@ -109,11 +123,22 @@ export default {
             .then((res)=>{
                 this.itemCategories.unshift(res.data);
                 this.itemCategory = '';
-                console.log('Created Data successfully');
+                this.fetchDatas();
             })
             .catch((err)=>{
                 console.log(err);
             });
+        },
+
+        //validations
+        validateInputs() {
+
+            if(this.itemCategory.itemCatCode != '' && this.itemCategory.itemCategory != '' && this.itemCategory.categoryDesc != '') {
+                this.isValidated = true;
+            } else {
+                this.isValidated = false;
+            }
+
         }
     },
     mounted() {
@@ -130,7 +155,11 @@ export default {
 .red {
     color: red;
 }
-
+.loadingBar {
+    background-color:red;
+    height: 2.5px;
+    width: 100%;
+}
 table tr:hover {
     cursor:pointer;
 }
