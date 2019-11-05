@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <item-list-item></item-list-item>
+                    <table-item></table-item>
                 </tbody>
                 </table>
             </div>

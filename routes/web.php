@@ -13,7 +13,8 @@
 
 Route::get('/', 'PagesController@index');
 Route::get('/itemList', 'ItemController@index');
-Route::get('/itemCategories', 'ItemCategoriesController@index');
+Route::get('/itemCategories', 'PagesController@itemCategories');
+Route::get('/itemCategories/{id}', 'ItemCategoriesController@show');
 
 Auth::routes();
 

@@ -19,18 +19,17 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('Navigation', require('./components/NavigationComponent.vue').default);
 
+//Reusable Components
+Vue.component('category-table-item', require('./components/Modules/ReusableComponents/CategoryTableItem.vue').default);
 
 //Item Purchase
 Vue.component('item-list', require('./components/Modules/Item_purchases/ItemList.vue').default);
-Vue.component('item-list-item', require('./components/Modules/Item_purchases/ItemList-item.vue').default);
 
 //MasterFiles
 Vue.component('category-list', require('./components/Modules/Master_files/ItemCategoriesList.vue').default);
-Vue.component('category-list-item', require('./components/Modules/Master_files/ItemCategoriesListItem.vue').default);
-
+Vue.component('category-view', require('./components/Modules/Master_files/ItemCategoryView.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
