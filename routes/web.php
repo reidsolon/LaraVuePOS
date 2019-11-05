@@ -15,6 +15,7 @@ Route::get('/', 'PagesController@index');
 Route::get('/itemList', 'ItemController@index');
 Route::get('/itemCategories', 'PagesController@itemCategories');
 Route::get('/itemCategories/{id}', 'ItemCategoriesController@show');
+Route::get('/itemCategories/edit/{id}', 'ItemCategoriesController@edit');
 
 Auth::routes();
 

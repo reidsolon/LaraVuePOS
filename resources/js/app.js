@@ -37,6 +37,7 @@ Vue.component('item-list', require('./components/Modules/Item_purchases/ItemList
 //MasterFiles
 Vue.component('category-list', require('./components/Modules/Master_files/ItemCategoriesList.vue').default);
 Vue.component('category-view', require('./components/Modules/Master_files/ItemCategoryView.vue').default);
+Vue.component('category-edit', require('./components/Modules/Master_files/ItemCategoryEdit.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

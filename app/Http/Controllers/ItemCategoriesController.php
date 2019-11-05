@@ -83,7 +83,11 @@ class ItemCategoriesController extends Controller
      */
     public function edit($id)
     {
-        
+        $decrypted_id = decrypt($id);
+
+        $data['categoryData'] = $categoryData = ItemCat::where('id', $decrypted_id)->get();
+        $data['title'] = 'LaraVue POS';
+        return view('pages.Modules.Master_files.item-category-edit')->with($data);
     }
 
     /**
