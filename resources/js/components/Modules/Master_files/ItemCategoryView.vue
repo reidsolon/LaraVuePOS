@@ -79,15 +79,25 @@ export default {
     },
     data() {
         return {
-
+            encrypted_id: String
         }
     },
     methods: {
+       getEncryptedId() {
+           axios.get('http://localhost:8000/itemCategories/encrypt/'+this.category_info[0].id)
+           .then((res) => {
+               this.encrypted_id = res.data;
+           })
+           .catch((err) => {
+               console.log(err);
+           })
+       },
        editLink() {
+            window.location.href = "http://localhost:8000/itemCategories/edit/"+this.encrypted_id;
        }
     },
     mounted() {
-        console.log(this.category_info);   
+        this.getEncryptedId();        
     }
     
 }

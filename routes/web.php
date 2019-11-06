@@ -16,6 +16,9 @@ Route::get('/itemList', 'ItemController@index');
 Route::get('/itemCategories', 'PagesController@itemCategories');
 Route::get('/itemCategories/{id}', 'ItemCategoriesController@show');
 Route::get('/itemCategories/edit/{id}', 'ItemCategoriesController@edit');
+Route::get('/itemCategories/sort/{sortField}/{sortType}', 'ItemCategoriesController@sort');
+Route::get('/itemCategories/encrypt/{id}', 'ItemCategoriesController@encryptId');
+Route::get('/itemCategories/edit/{id}', 'ItemCategoriesController@edit');
 
 Auth::routes();
 

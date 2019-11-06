@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Item_Categories as ItemCat;
 
 class ItemCategoriesController extends Controller
@@ -49,6 +50,7 @@ class ItemCategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        
         $category = new ItemCat();
         $category->itemCategory = ucwords($request->itemCategory);
         $category->itemCatCode = strtoupper($request->itemCatCode);
@@ -58,6 +60,8 @@ class ItemCategoriesController extends Controller
         $category->save();
 
         return $category;
+
+        
     }
 
     /**
@@ -70,8 +74,17 @@ class ItemCategoriesController extends Controller
     {
         $decrypted_id = decrypt($id);
 
-        $data['categoryData'] = $categoryData = ItemCat::where('id', $decrypted_id)->get();
+        $categories = ItemCat::where('id', $decrypted_id)->get();
         $data['title'] = 'LaraVue POS';
+        $encrypted_ids = array();
+
+        for ($i = 0; $i < count($categories); $i++ ){
+            $encrypted_ids[$i] = encrypt($categories[$i]->id);
+        }
+
+        $data['categoryData'] = $categories;
+        $data['encrypted_ids'] = $encrypted_ids;
+  
         return view('pages.Modules.Master_files.item-category-view')->with($data);
     }
 
@@ -111,5 +124,23 @@ class ItemCategoriesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function sort($sortingField, $sortingType) {
+        $categories = ItemCat::orderBy($sortingField, $sortingType)->get();
+        $encrypted_ids = array();
+
+        for ($i = 0; $i < count($categories); $i++ ){
+            $encrypted_ids[$i] = encrypt($categories[$i]->id);
+        }
+
+        $data['data'] = $categories;
+        $data['encrypted_ids'] = $encrypted_ids;
+    
+        return $data;
+    }
+
+    public function encryptId($id) {
+        return encrypt($id);
     }
 }

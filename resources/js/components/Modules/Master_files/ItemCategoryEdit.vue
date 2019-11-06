@@ -8,7 +8,7 @@
                         <div class="row">
 
                             <div class="col-md-6 col-lg-6">
-                                View Category
+                                Edit Category
                             </div>
 
                             <div class="col-md-6 col-lg-6">
@@ -31,7 +31,7 @@
                                     <strong>Category Code</strong>
                                     </div>
                                     <div class="col-md-4 col-lg-4 view-input">
-                                        {{category_info[0].itemCatCode}}
+                                        <input type="text" class="form-control" readonly='true' :value="category_info[0].itemCatCode" />
                                     </div>  
                                 </div>
                                 <br />
@@ -40,7 +40,7 @@
                                     <strong>Category</strong>
                                     </div>
                                     <div class="col-md-4 col-lg-4 view-input">
-                                        {{category_info[0].itemCategory}}
+                                        <input type="text" class="form-control"  :value="category_info[0].itemCategory"/>
                                     </div>  
                                 </div>
 
@@ -51,7 +51,7 @@
                                     <strong>Description</strong>
                                     </div>
                                     <div class="col-md-4 col-lg-4 view-input">
-                                        {{category_info[0].categoryDesc}}
+                                        <input type="text" class="form-control"  :value="category_info[0].categoryDesc"/>
                                     </div>  
                                 </div>
                                 <br />

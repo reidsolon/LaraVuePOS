@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<category-view :category_info="{{ $categoryData }}"></category-view>
+<category-view :category_info="{{ $categoryData }}" ></category-view>
 @endsection
 
 

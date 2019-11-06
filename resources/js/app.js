@@ -39,6 +39,9 @@ Vue.component('category-list', require('./components/Modules/Master_files/ItemCa
 Vue.component('category-view', require('./components/Modules/Master_files/ItemCategoryView.vue').default);
 Vue.component('category-edit', require('./components/Modules/Master_files/ItemCategoryEdit.vue').default);
 
+//laravel-vue pagination
+Vue.component('pagination', require('laravel-vue-pagination'));
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
